@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#fafafa;
+    transition:0.5s;
+}
+img{
+    width:100%;
+    display:block;
+}
+.box{
+    max-width:700px;
+    margin:auto;
+}
+.msg{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#0f0;
+    font-family:monospace;
+    display:none;
+}
+.glitch{
+    animation:g .1s infinite;
+}
+@keyframes g{
+0%{transform:translate(2px,-2px);}
+50%{transform:translate(-2px,2px);}
+100%{transform:translate(0);}
+}
+</style>
+
+</head>
+<body>
+
+<div class="msg" id="msg"></div>
+
+<div class="box">
+<img src="https://picsum.photos/700/400?1">
+<img src="https://picsum.photos/700/400?2">
+<img src="https://picsum.photos/700/400?3">
+<img src="https://picsum.photos/700/400?4">
+<img src="https://picsum.photos/700/400?5">
+</div>
+
+<script>
+
+let msg=document.getElementById("msg");
+
+window.addEventListener("scroll",()=>{
+
+let p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+
+if(p>30){
+document.body.classList.add("glitch");
+msg.style.display="block";
+msg.innerHTML="SIGNAL LOST...";
+}
+
+if(p>60){
+document.body.style.background="black";
+document.body.style.color="white";
+msg.innerHTML="VIDEO CORRUPTED...";
+}
+
+if(p>85){
+msg.innerHTML="UNKNOWN ERROR...";
+}
+
+if(p>95){
+document.body.innerHTML=`
+<div style="display:flex;height:100vh;justify-content:center;align-items:center;flex-direction:column;background:black;color:white;">
+<h1>404 : MEMORY NOT FOUND</h1>
+<p>😂 Santai bro, ini cuma prank.</p>
+</div>`;
+}
+
+});
+
+</script>
+
+</body>
+</html>
